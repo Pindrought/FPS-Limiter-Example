@@ -22,7 +22,7 @@ void FPSLimiter::Pulse(double maxfps)
 		double waitTime = maxElapsedTime - t.GetMilisecondsElapsed();
 		if (waitTime > 0) //sanity check
 		{
-			Sleep(waitTime);
+			Sleep(waitTime+1);
 		}
 	}
 	t.Start();

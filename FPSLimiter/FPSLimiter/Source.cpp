@@ -7,7 +7,7 @@ int main()
 	for (int i = 0; i < 5; i++)
 	{
 		std::cout << "Test" << std::endl;
-		fpslimiter.Pulse(1);
+		fpslimiter.Pulse(60);
 	}
 	return 0;
 }
