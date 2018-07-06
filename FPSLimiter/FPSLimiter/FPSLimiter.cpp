@@ -1,10 +1,6 @@
 #include "FPSLimiter.h"
-#ifdef _WIN32 
-#include <Windows.h>
-#else//Linux Sleep that functions like win32 sleep
-#define Sleep(duration) sleep(duration/1000)
-#include <unistd.h>
-#endif
+#include <chrono>
+#include <thread>
 
 
 FPSLimiter::FPSLimiter()
@@ -22,7 +18,7 @@ void FPSLimiter::Pulse(double maxfps)
 		double waitTime = maxElapsedTime - t.GetMilisecondsElapsed();
 		if (waitTime > 0) //sanity check
 		{
-			Sleep(waitTime+1);
+			std::this_thread::sleep_for(std::chrono::microseconds((long)(waitTime * 1000)));
 		}
 	}
 	t.Start();
